@@ -1,0 +1,1 @@
+int f(double *a, int n);
