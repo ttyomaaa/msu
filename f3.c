@@ -1,0 +1,21 @@
+#include "math.h"
+#include "f3.h"
+double f(double *A, double *b, double *x, int m, int n)
+{
+    int i,j;
+    double buf, res=0;
+    double *pi;
+
+    for(i=0;i<m;i++)
+    {
+        pi=A+i*n;
+	buf=0;
+	for(j=0;j<n;j++)
+	{
+            buf+=pi[j]*x[j];
+	}
+	res+=fabs(buf-b[i]);
+    }
+
+    return res;
+}
