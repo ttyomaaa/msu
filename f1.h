@@ -1,0 +1,1 @@
+double f(double *a, double *x0, double *x, int n, int m);
