@@ -1,1 +1,0 @@
-int solver(int n, double *a, double *b, double *x, int *ord);
