@@ -2,7 +2,7 @@ CFLAGS = -O3 -fstack-protector-all -W -Werror -Wall -Wextra -Wunused -Wcast-alig
 
 all: a.out
 a.out: main17.o matrix.o f17.o 
-	gcc main17.o matrix.o f17.o -o a.out
+	gcc main17.o matrix.o f17.o -lm -o a.out
 main17.o: main17.c matrix.h f17.h
 	gcc -c $(CFLAGS) main17.c
 matrix.o: matrix.c matrix.h

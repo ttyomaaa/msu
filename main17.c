@@ -1,16 +1,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <math.h>
 #include "matrix.h"
 #include "f17.h"
+static double L1_norm(int n, double *a)
+{
+    int i,j;
+    double sum, max=-1;
+    
+    for(j=0;j<n;j++)
+    {
+        sum=0;
+        for(i=0;i<n;i++) sum+=fabs(a[i*n+j]);
+        if (sum>max) max=sum;
+    }
+    
+    return max;
+}
 
 int main (int argc, char * argv[])
 {
-    int n,m,k;
+    int n,m,k,i;
     int *ord;
     int res;
     double *a,*b,*x;
-    double resid, err;
+    double resid, err, norm;
     double t;
     char *name=0;
     
@@ -85,16 +100,28 @@ int main (int argc, char * argv[])
     
     init_b(a, b, n);
     
+    
     printf("A = \n");//starter matrix
     print_matrix(a, m, n, n);
     printf("B = \n");
     print_matrix(b, m, 1, n);
     printf("\n");
     
-    //for(i=0;i<n;i++) ord[i]=i;
+    for(i=0;i<n;i++) ord[i]=i;
+    
+    norm=L1_norm(n,a);
+    if(fabs(norm)<1e-100) 
+    {
+        printf("CAN'T SOLVE: L1 NORM=0 \n");
+        free(a);
+        free(b);
+        free(x);
+        free(ord);
+        return -1;
+    }
     
     t = clock();
-    res=solver(n, a, b, x, ord);
+    res=solver(n, a, b, x, ord, norm);
     t = clock()-t;
     
     if (res==-1) printf("CAN'T SOLVE\n");
@@ -124,7 +151,3 @@ int main (int argc, char * argv[])
     free(ord);
     return 0;
 }
-
-
-
-
