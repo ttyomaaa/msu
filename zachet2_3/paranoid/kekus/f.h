@@ -1,1 +1,0 @@
-void solve (char **a, int m, int n, int i, int j);
