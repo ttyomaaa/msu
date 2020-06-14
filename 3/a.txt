@@ -1,0 +1,11 @@
+abc;abcdef
+abc;abcde-f
+abc;abcde,abcdefde,3abcdef;abcdef
+abdbcbdbcbdbfbef ;3abcdef4
+abc-defghij
+abc-2defghij
+33333
+12
+331233
+qwesdfb\qdf^sefr
+aqwew sdfg\sdf^sdf
